@@ -43,12 +43,6 @@ class DirInputTask extends InputTask<DirectoryInput> {
             //if file is changed or added, add file to pending collections.
             input.changedFiles.each {
                 file, status ->
-                    if (status == Status.CHANGED || status == Status.REMOVED) {
-                        def cache = getDestFileMapping(file, inputDir, taskInput.dest)
-                        if (cache != null) {
-                            FileUtils.deleteQuietly(cache)
-                        }
-                    }
                     if (status == Status.CHANGED || status == Status.ADDED) {
                         files << file
                     }
